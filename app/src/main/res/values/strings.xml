@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">QRcode</string>
+    <string name="scan">Click to Scan QR Code</string>
+    <string name="result">QRCode Result View</string>
+</resources>
