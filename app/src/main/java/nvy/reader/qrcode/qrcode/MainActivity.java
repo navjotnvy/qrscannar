@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import java.io.BufferedReader;
@@ -31,7 +30,6 @@ import java.util.TimeZone;
 
 
 public class MainActivity extends AppCompatActivity {
-    int a=0;
     Button scancode;
     long start,total;
     String  formattedDate1;
@@ -90,16 +88,16 @@ public class MainActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         Log.d(result.getContents() + "hi", "");
         if (result.getContents() != null) {
-                long end = System.currentTimeMillis();
-                Log.d("TAG", "Found barcode in " + (end - start) + " ms");
-                Toast.makeText(this, "It took you " + (end - start) + " ms to wake up", Toast.LENGTH_SHORT).show();
-                total = end - start;
-                String hey = Long.toString(total);
-                writeToFile(formattedDate1 +" : QRCode :"+ hey +"time taken to scan " +total, getBaseContext());
-                readFromFile(getBaseContext());
-                Toast.makeText(this, readFromFile(getBaseContext())+"Read file", Toast.LENGTH_SHORT).show();
-                Log.d(readFromFile(getBaseContext()), "read file");
-                Toast.makeText(this, result.getContents()+ "", Toast.LENGTH_SHORT).show();
+            long end = System.currentTimeMillis();
+            Log.d("TAG", "Found barcode in " + (end - start) + " ms");
+            //Toast.makeText(this, "It took you " + (end - start) + " ms to wake up", Toast.LENGTH_SHORT).show();
+            total = end - start;
+            String hey = Long.toString(total);
+            writeToFile(formattedDate1 +" : QRCode :"+ hey +"time taken to scan " +total, getBaseContext());
+            readFromFile(getBaseContext());
+            //Toast.makeText(this, readFromFile(getBaseContext())+"Read file", Toast.LENGTH_SHORT).show();
+            Log.d(readFromFile(getBaseContext()), "read file");
+            //Toast.makeText(this, result.getContents()+ "", Toast.LENGTH_SHORT).show();
 
 
             final ArrayList<String> list = new ArrayList<String>();
@@ -116,12 +114,13 @@ public class MainActivity extends AppCompatActivity {
                     return view;
                 }
             };
-            list.add(formattedDate1 +" : QRCode : "+ result.getContents() +" Time taken to scan " +total+".");
+            list.add(" Date : "+formattedDate1 +"\n QRCode : "+ result.getContents() +"\n Time taken to scan: " +total+".");
             lv.setAdapter(at);
 
             textview = (TextView) findViewById(R.id.textView);
-            textview.setText(formattedDate1 +" : QRCode : "+ result.getContents() +" Time taken to scan " +total);
-                /*finish();
+            textview.setText(formattedDate1 +"\n QRCode : "+ result.getContents() +"\n Time taken to scan: " +total +"ms");
+
+            /*finish();
                 System.exit(0);
                 int pid = android.os.Process.myPid();
                 android.os.Process.killProcess(pid);*/
