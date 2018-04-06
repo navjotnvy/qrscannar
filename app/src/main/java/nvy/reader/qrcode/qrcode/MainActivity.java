@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import java.io.BufferedReader;
@@ -26,8 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
-
 
 public class MainActivity extends AppCompatActivity {
     Button scancode;
@@ -80,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         };
 
         lv.setAdapter(at);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                .addTestDevice(Settings.Secure.getString(getContentResolver(),
+                        Settings.Secure.ANDROID_ID))  // My Galaxy Nexus test phone
+                .build();
+        mAdView.loadAd(request);
     }
 
 

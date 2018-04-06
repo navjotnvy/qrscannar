@@ -2,4 +2,5 @@
     <string name="app_name">QRcode Scannar</string>
     <string name="scan">Click to Scan QR Code</string>
     <string name="result">QRCode Result</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5484380991156000/7269210973</string>
 </resources>
