@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         lv = (ListView) findViewById(R.id.listView);
+
         final ArrayList<String> list = new ArrayList<String>();
         final ArrayAdapter<String> at=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,list){
             @Override
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
                 // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.BLACK);
+                tv.setTextIsSelectable(true);
                 // Generate ListView Item using TextView
                 return view;
             }
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(this, result.getContents()+ "", Toast.LENGTH_SHORT).show();
 
 
+            /*
             final ArrayList<String> list = new ArrayList<String>();
             final ArrayAdapter<String> at=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,list){
                 @Override
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             };
             list.add(" Date : "+formattedDate1 +"\n QRCode : "+ result.getContents() +"\n Time taken to scan: " +total+".");
             lv.setAdapter(at);
-
+*/
             textview = (TextView) findViewById(R.id.textView);
             textview.setText(formattedDate1 +"\n QRCode : "+ result.getContents() +"\n Time taken to scan: " +total +"ms");
 
