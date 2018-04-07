@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -30,18 +32,21 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+
 public class MainActivity extends AppCompatActivity {
     Button scancode;
     long start,total;
     String  formattedDate1;
     ListView lv;
     TextView textview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Activity activity = this;
         setContentView(R.layout.activity_main);
-
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
         start = System.currentTimeMillis();
         Calendar c = Calendar.getInstance(TimeZone.getDefault());
         SimpleDateFormat df1 = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss", Locale.CANADA);
@@ -90,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         Settings.Secure.ANDROID_ID))  // My Galaxy Nexus test phone
                 .build();
         mAdView.loadAd(request);
+
+
+
     }
 
 
@@ -131,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             textview = (TextView) findViewById(R.id.textView);
             textview.setText(formattedDate1 +"\n QRCode : "+ result.getContents() +"\n Time taken to scan: " +total +"ms");
 
+
             /*finish();
                 System.exit(0);
                 int pid = android.os.Process.myPid();
@@ -170,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return ret;
     }
-
 
     @Override
     protected void onPause() {
